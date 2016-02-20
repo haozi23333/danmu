@@ -1,0 +1,83 @@
+*{
+    font-family: QAQ;
+}
+li{
+    width: 100%;
+    height: 40px;
+    background: gray;
+}
+.aa{
+    webkit-app-region: drag;
+    -webkit-user-select: none;
+    margin-top: -10px;
+}
+body{
+    /*background: gray;*/
+    overflow-y:hidden;
+    overflow-x: hidden;
+    margin-top: 0px;
+    /*box-shadow: 1px 1px 1px 1px red;*/
+}
+.tx{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background-size: 40px 40px;
+    float: left;
+    /*position: absolute;*/
+    left: 0px;
+}
+.ly{
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-size: 40px 40px;
+    float: left;
+}
+a{
+    position: absolute;
+}
+@font-face {
+    font-family: QAQ;
+    src: url("../resources/font/HanzipenSC-Regular.otf");
+}
+span{
+    width:400px;
+    font-family: QAQ;
+    font-size: 20px;
+    margin-left: 10px;
+}
+.TextDM{
+    margin-top: 10px;
+    float: left;
+    opacity: 0.2;
+}
+.GiftDM{
+    margin-top: 10px;
+    float: left;
+    opacity: 0.2;
+}
+.DM{
+    width: 400px;
+    height: auto;
+}
+.DM_LY{
+    box-shadow: 0px 0px 10px 1px red;
+    border: 1px solid red;
+}
+.DM_GLY{
+    box-shadow: 0px 0px 10px 1px red;
+    border: 1px solid red;
+}
+.DM_Gift_Yin{
+    box-shadow: 0px 0px 10px 1px silver;
+    border: 1px solid silver;
+}
+.DM_Gift_Jin{
+    box-shadow: 0px 0px 10px 1px gold;
+    border: 1px solid gold;
+}
+.DM_Me{
+    box-shadow: 0px 0px 10px 1px green;
+    border: 1px solid green;
+}

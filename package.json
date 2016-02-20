@@ -1,0 +1,26 @@
+{
+  "main":"index.html",
+  "name":"弹幕姬",
+  "window":{
+    "toolbar":false,
+    "transparent":true,
+    "frame":false,
+    "always-on-top":true,
+    "height":92,
+    "width":492
+  },
+  "respository":{
+    "type" :"git",
+    "url" :"http://path/to/url"
+  },
+  "licenses":"",
+  "author":"haozi23333",
+  "contributors":[
+    {
+      "name":"haozi23333",
+      "email":"haozi23333@gmail.com",
+      "web":"blog.haozi.club",
+      "bilibili-live":"http://live.bilibili.com/61627"
+    }]
+
+}
