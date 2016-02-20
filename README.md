@@ -109,12 +109,16 @@ link.js
         "main":"启动文件",
         "author":"作者",
         "version":"0.0.1",
+        window:{
+            "transparent":true//窗口透明
+        },
         "npm":[{
             "name":"名称"，
             "version":"版本"
         }]
     }
 ```
+[window 支持属性](http://docs.nwjs.io/en/v0.13.0-beta5/References/Manifest%20Format/#window-subfields)window属性必须在创建窗口的时候传入，是否透明，窗口图标，最大宽高度什么的
 `npm`暂不支持<br>
 由于nw.js 支持`node`所以允许加载nodejs的模块<br>
 本弹幕姬的插件系统比较简单,所有东西都可以自定义自由度较高//(╯‵□′)╯︵┻━┻偷懒就偷懒废话这么多<br>
