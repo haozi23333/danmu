@@ -6,14 +6,14 @@
     "transparent":true,
     "frame":false,
     "always-on-top":true,
-    "height":92,
+    "height":500,
     "width":492
   },
   "respository":{
     "type" :"git",
-    "url" :"http://path/to/url"
+    "url" :"https://github.com/haozi23333/danmu"
   },
-  "licenses":"",
+  "licenses":"GUN",
   "author":"haozi23333",
   "contributors":[
     {
@@ -22,5 +22,4 @@
       "web":"blog.haozi.club",
       "bilibili-live":"http://live.bilibili.com/61627"
     }]
-
 }

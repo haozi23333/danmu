@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <script type="text/javascript" src="../../js/uitl/GiftName.js"></script>
+    <script type="text/javascript" src="../../js/userContextMenu.js"></script>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div class="aa" onclick="clear_all()"><h1>欢迎来到耗子的直播间</h1></div>
+<div id="DM"></div>
+</body>
+</html>
+<script>
+    var t=   {"info":
+            [
+                [0,1,25,16777215,1455719956,"1455705800",0,"7aa0e8c7",0],
+                "6666",
+                [6433840,
+                    "haozi艹",
+                    1,0,0],
+                [],
+                [21,16067],
+                []
+            ],
+        "cmd":"DANMU_MSG"
+    }
+    var DM,DM_number= 0,MaxVisibleDmMun=10,NowVisibleDmMun= 0,selectDmUserId;
+    var d;
+    var win = nw.Window.get();
+    var gui = require('nw.gui');
+    win.setAlwaysOnTop(true);
+    win.resizeTo(500, 500);
+    if(win.canSetVisibleOnAllWorkspaces() )
+        win.setVisibleOnAllWorkspaces(true)
+    var worker = new Worker('js/createDM.js');
+    worker.onmessage=function(msg){
+        if(msg.type=="message")
+            if(msg.data.type=="TextDM") {
+                if (NowVisibleDmMun >= MaxVisibleDmMun)
+                {
+                    $(".TextDM:first").animate({"margin-left":"300px",opacity:'0'},"fast");
+                    setTimeout(function(){
+                        $(".TextDM:first").remove();
+                    },500)
+                }
+                $("#DM").append(msg.data.data.html);
+                $("#DM_"+msg.data.data.number).click(function(a){
+                    selectDmUserId = $(a.toElement).parent().attr("userid");
+                    menu.popup(window.event.clientX, window.event.clientY);
+                    a.stopPropagation();
+                });
+                $("#DM_"+msg.data.data.number).animate({"margin-left":"100px",opacity:'1'},"slow");
+                NowVisibleDmMun++;
+            }
+    }
+    var newwin,_socket;
+    window.onload=function() {
+        _socket = global.DmLister.connect();
+        _socket.on("DM", function (data) {
+            data = JSON.parse(data.toString().substring(4));
+            switch (data.cmd) {
+                case "DANMU_MSG":
+                    DM_number++;
+                    worker.postMessage({
+                        "type": "createTextDm", "data": {
+                            num: DM_number,
+                            uid: data.info[2][0],
+                            name: data.info[2][1],
+                            value: data.info[1],
+                            admin: data.info[2][3]
+                        }
+                    });
+                    break;
+                case "SEND_GIFT":
+                    DM_number++;
+                    worker.postMessage({
+                        "type": "createGiftDm", "data": {
+                            num: DM_number,
+                            uid: data.data.uid,
+                            name: data.data.uname,
+                            action: data.data.action,
+                            giftName: data.data.giftName,
+                            coinType: data.data.coinType,
+                            giftId: data.data.giftId,
+                            giftnum: data.data.num,
+                            price: data.data.price
+                        }
+                    });
+                    break;
+                case "WELCOME":
+                    break;
+                case "SYS_GIFT":
+                    break;
+                default:
+                    break;
+            }
+        });
+    }
+    function clear_all(){
+        $(".TextDM").animate({"margin-left":"300px",opacity:'0'},"fast");
+        setTimeout(function(){
+            $(".TextDM").remove();
+        },500)
+        NowVisibleDmMun=0;
+    }
+
+</script>

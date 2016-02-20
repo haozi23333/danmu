@@ -39,7 +39,7 @@ a{
 }
 @font-face {
     font-family: QAQ;
-    src: url("../resources/font/HanzipenSC-Regular.otf");
+    src: url("../../../resources/font/HanzipenSC-Regular.otf");
 }
 span{
     width:400px;

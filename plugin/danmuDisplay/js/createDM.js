@@ -2,9 +2,9 @@
  * Created by haozi on 16/2/17.
  */
 var createDM={};
-importScripts("minajax.js");
-importScripts("uitl/user.js");
-importScripts("uitl/GiftName.js");
+importScripts("../../../js/minajax.js");
+importScripts("../../../js/uitl/user.js");
+importScripts("../../../js/uitl/GiftName.js");
 onmessage = function(msg) {
     if(msg.data.type=="init")
     {
@@ -24,7 +24,7 @@ createDM.createTextDm=function (data){
     });
 }
 createDM.createGiftDm=function (data){
-    if(data.giftnum==1)
+    if(data.giftnum==1&&data.giftId==GIFTNAME.latiao)
         return;
     if(data.coinType!="silver")
         var c = "DM_Gift_Jin"

@@ -18,7 +18,7 @@ DmLister.connect=function(){
 }
 DmLister.Socket=function(){
     var s = {event:{}};
-    s.id = this.uuid();
+    s.id = DmLister.uuid();
     s.emit=function(eventName,data){
         DmLister.emit(id,eventName,data);
     }
@@ -63,13 +63,14 @@ DmLister.Socket=function(){
         delete this.event;
         this.event={};
     }
+    return s;
 }
 
 /**
  * 生成uuid
  * @returns {string}    生成好的uuid
  */
-DM.uuid=function() {
+DmLister.uuid=function() {
     function S4() {
         return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
     }
@@ -81,15 +82,11 @@ DM.uuid=function() {
  * @param data          数据
  * @param callback      回调  返回事件接收的数量
  */
-DmLister.emit=function(eventName,data,callback){
-    var count = 0;
+DmLister.emit=function(eventName,data){
     for(var p in this.list)
     {
         p[eventName](data);
-        count++;
     }
-    if(callback)
-        callback({count:count});
 }
 
 /**
@@ -106,7 +103,6 @@ DmLister.emitOne=function(senderId,recId,eventName,data){
         if(p.id==id)
         {
             p[eventName]({"eventName":eventName,"sender":senderId,"recId":recId,"data":data,"Date":new Date()});
-            callback();
             return;
         }
     }
@@ -114,4 +110,4 @@ DmLister.emitOne=function(senderId,recId,eventName,data){
 /**
  * 绑定到全局对象 使其可以全局调用
  */
-global=DmLister;
+global.DmLister=DmLister;
