@@ -121,10 +121,12 @@ link.js
 -----
 [minAjax](http://argunner.github.io/minAjax.js/)开源的小巧轻便的ajax框架(有修改)<br>
 `plugin`引用路径`src="../../js/minajax.js"`<br>
-[Jquery](https://jquery.com/)前端框架<br>
+[Jquery v3.0.0-beta1](https://jquery.com/)前端框架<br>
 `plugin`引用路径`src="../../js/jquery.js"`<br>
 
-
+聊天扯淡开发群
+------
+![](http://pub.idqqimg.com/wpa/images/group.png)(http://shang.qq.com/wpa/qunwpa?idkey=36fe0bea12ddced29bfc544fa36cc01acc704974968c56c8798f2835b80df52d);
 license(｀・ω・´)
 ------
 `danmu`'s code in this repo uses the GUN license
