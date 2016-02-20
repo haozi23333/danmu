@@ -84,20 +84,25 @@ link.js
     listen.on("DM",callback);//接收弹幕信息
     listen.on("exit",callback);//停止插件运行并退出
     listen.on("reload",callback);//插件重新加载
-    listen.on("stop",callback)//强行退出插件在收到这个信息10秒之后窗口会被强制关闭
+    listen.on("stop",callback)//强行退出插件在收到这个信息5秒之后窗口会被强制关闭
 ```
 编写插件(｀・ω・´)
 ------
 src
 >XXXplugin
->>img
->>css
->>js
->>index.html
->>packege.json
+>>img<br>
+>>css<br>
+>>>index.css<br>
+>>js<br>
+>>>index.js<br>
+>>index.html<br>
+>>packege.json<br>
 
 ```josn
     {
+        "name":"插件名称",
+        "main":"启动文件",
+        "author":"作者",
         
     }
 ```
