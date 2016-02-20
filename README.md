@@ -117,6 +117,12 @@ link.js
 由于nw.js 支持`node`所以允许加载nodejs的模块<br>
 本弹幕姬的插件系统比较简单,所有东西都可以自定义自由度较高//(╯‵□′)╯︵┻━┻偷懒就偷懒废话这么多<br>
 
+用到的库
+-----
+[minAjax](http://argunner.github.io/minAjax.js/)开源的小巧轻便的ajax框架(有修改)<br>
+`plugin`引用路径`src="../../js/minajax.js"`<br>
+[Jquery](https://jquery.com/)前端框架<br>
+`plugin`引用路径`src="../../js/jquery.js"`<br>
 
 
 license(｀・ω・´)
