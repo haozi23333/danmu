@@ -126,7 +126,7 @@ link.js
 
 聊天扯淡开发群
 ------
-![](http://pub.idqqimg.com/wpa/images/group.png)(http://shang.qq.com/wpa/qunwpa?idkey=36fe0bea12ddced29bfc544fa36cc01acc704974968c56c8798f2835b80df52d);
+[![](http://pub.idqqimg.com/wpa/images/group.png)](http://shang.qq.com/wpa/qunwpa?idkey=36fe0bea12ddced29bfc544fa36cc01acc704974968c56c8798f2835b80df52d);
 license(｀・ω・´)
 ------
 `danmu`'s code in this repo uses the GUN license
