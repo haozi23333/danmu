@@ -36,7 +36,7 @@ link.js
         "cmd":"DANMU_MSG"
     }
 ```
-socket
+全局API
 ```javascript
     //如果加入了本文件 请不要使用link.js开启新的socket线程
     //DmLister 是一个`global`属性的对象 请不要覆盖。
@@ -44,6 +44,10 @@ socket
         listen.on("data",function(data){//添加事件监听
             //TOTD ......
         })
+    /**
+     *  
+     */
+    listen.id;
     /**
      *  添加事件监听
      * @param eventName 事件名称
@@ -75,8 +79,29 @@ socket
      * @return true;
      */
     listen.removeAll(eventName);
+    
+    //系统事件！
+    listen.on("DM",callback);//接收弹幕信息
+    listen.on("exit",callback);//停止插件运行并退出
+    listen.on("reload",callback);//插件重新加载
+    listen.on("stop",callback)//强行退出插件在收到这个信息10秒之后窗口会被强制关闭
+```
+编写插件(｀・ω・´)
+------
+src
+>XXXplugin
+>>img
+>>css
+>>js
+>>index.html
+>>packege.json
+
+```josn
+    {
+        
+    }
 ```
 
-
-Lister(｀・ω・´)
+license(｀・ω・´)
 ------
+`danmu`'s code in this repo uses the GUN license
