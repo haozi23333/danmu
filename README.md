@@ -131,3 +131,11 @@ link.js
 license(｀・ω・´)
 ------
 `danmu`'s code in this repo uses the GUN license
+
+捐助
+-----
+学生党求点打赏<br>
+直播间刷点辣条也好QAQ<br>
+注明`B站ID`或者`github ID`<br>
+![](http://bqsql.club/aex09165h9zbw2os5hpzt09.png)
+
