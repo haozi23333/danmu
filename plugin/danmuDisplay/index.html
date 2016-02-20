@@ -41,9 +41,9 @@
             if(msg.data.type=="TextDM") {
                 if (NowVisibleDmMun >= MaxVisibleDmMun)
                 {
-                    $(".TextDM:first").animate({"margin-left":"300px",opacity:'0'},"fast");
+                    $(".DM:first").animate({"margin-left":"300px",opacity:'0'},"fast");
                     setTimeout(function(){
-                        $(".TextDM:first").remove();
+                        $(".DM:first").remove();
                     },500)
                 }
                 $("#DM").append(msg.data.data.html);
@@ -60,7 +60,7 @@
     window.onload=function() {
         _socket = global.DmLister.connect();
         _socket.on("DM", function (data) {
-            data = JSON.parse(data.toString().substring(4));
+            data =data.msg;
             switch (data.cmd) {
                 case "DANMU_MSG":
                     DM_number++;

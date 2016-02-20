@@ -18,3 +18,11 @@ user.getInfoById=function(id,callback)
         }
     })
 }
+user.getRoomById=function(){
+
+}
+user.getRoomIdByshortId=function(id){
+
+
+
+}

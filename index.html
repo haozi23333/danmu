@@ -6,20 +6,33 @@
     <link rel="stylesheet" href="plugin/danmuDisplay/css/index.css">
     <script type="text/javascript" src="js/pluginInit.js"></script>
     <script type="text/javascript" src="js/socket.js"></script>
+    <script type="text/javascript" src="js/link.js"></script>
+    <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 <div class="aa" onclick="clear_all()"><h1>欢迎来到耗子的直播间</h1></div>
-<div id="DM"></div>
+    <div>
+
+
+    </div>
 </body>
 </html>
+<!--http://music.163.com/#/song?id=39443692-->
 <script>
     var s = global.DmLister.connect();
     var p;
     var win = nw.Window.get();
-    var DM = require("./js/link.js").init(61627);
+    var DM = link;
     DM.onData(function(data){
-        s.emit("DM",JSON.parse(data.toString().substring(4)));
+        if(data.type=="error")
+            s.emit("DM_error",data.msg);
+        if(data.type=="connect")
+            s.emit("connect",data.msg);
+        s.emit("DM",data);
+
     })
+    DM.init(5354);
+    DM.connect();
     var gui = require('nw.gui');
     window.onload=function(){
         p = plugin.init();

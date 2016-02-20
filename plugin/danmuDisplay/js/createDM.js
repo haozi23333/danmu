@@ -26,10 +26,10 @@ createDM.createTextDm=function (data){
 createDM.createGiftDm=function (data){
     if(data.giftnum==1&&data.giftId==GIFTNAME.latiao)
         return;
-    if(data.coinType!="silver")
-        var c = "DM_Gift_Jin"
-    else
+    if(data.coinType=="undefined"||data.coinType=="silver")
         var c = "DM_Gift_Yin"
+    else
+        var c = "DM_Gift_Jin"
     //switch (data.sf)
     //{
     //    case "LY":
@@ -70,9 +70,8 @@ createDM.createGiftDm=function (data){
         //    case GIFTNAME.niangao:
         //        break;
         //}
-
         var box = "<div userId=\"" + data.uid + "\" class='DM GiftDM' id=\"DM_" + data.num + "\"><div class=\"tx " + c + "\" style='background-image: url(\"" + a.face + "\")'></div>";
-        box += "<span style='float: left;width: auto'>"+data.name+":</span><div class=\"ly "+ c +"\" style='background-image: url(\"resources/img/gift/gift-"+data.giftId+".gif\")'  ></div>X"+data.giftnum+"</div>";
+        box += "<span style='float: left;width: auto'>"+data.name+":</span><div class=\"ly "+ c +"\" style='background-image: url(\"../../../resources/img/gift/gift-"+data.giftId+".gif\")'  ></div>X"+data.giftnum+"</div>";
         postMessage({"type": "TextDM", data: {number: data.num, "html": box}});
     });
 }

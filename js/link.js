@@ -5,7 +5,6 @@
  * 代码渣 看个鬼啊 _(:зゝ∠)_
  */
 var net = require("net");
-
 var link ={
     "PORT":88,
     "HOST":"58.220.29.21",
@@ -39,13 +38,14 @@ link.init=function(roomid){
     var that = this;
     this.client = net.Socket();
     this.client.on("data",function(data){
-        that.Data(data)
-    })
+        that.Data({"type":"success","code":0,msg:JSON.parse(data.toString().substring(4))})
+    });
     this.client.on("error",function(dada){
         console.log("ERROR:"+dada);
     })
     this.client.on('close', function(data) {
-        console.log("连接弹幕服务器爆炸")
+        //console.log("连接弹幕服务器爆炸")
+        that.Data({"type":"error","code":-1,"msg":"连接弹幕服务器爆炸Σ(っ °Д °;)っ"})
         clearInterval(this.jishiqi);
         that.client.destroy();
         that.chongshicishu++;
@@ -56,6 +56,7 @@ link.init=function(roomid){
 }
 link.connect=function(){
     //console.log("链接服务器");
+    this.Data({"type":"success","code":0,"msg":"正在连接弹幕服务器_(:зゝ∠)_"})
     var that = this;
     this.client.connect(this.PORT,this.HOST,function(){
         that.client.write(that.roomid);
@@ -69,8 +70,7 @@ link.onData=function(a)
 {
     this.Data = a;
 }
-module.exports=link;
-
+//module.exports=link;
 
 
 

@@ -2,10 +2,6 @@
  * Created by haozi on 16/2/20.
  */
 
-var socketServeer = require("./js/link.js").init(61627);
-socketServeer.onData(function(data){
-
-});
 var DmLister={list:{}};
 /**
  * 连接 nw.js 事件中心
@@ -20,7 +16,7 @@ DmLister.Socket=function(){
     var s = {event:{}};
     s.id = DmLister.uuid();
     s.emit=function(eventName,data){
-        DmLister.emit(id,eventName,data);
+        DmLister.emit(this.id,eventName,data);
     }
     /**
      * 激活事件
@@ -82,10 +78,11 @@ DmLister.uuid=function() {
  * @param data          数据
  * @param callback      回调  返回事件接收的数量
  */
-DmLister.emit=function(eventName,data){
+DmLister.emit=function(id,eventName,data){
     for(var p in this.list)
     {
-        p[eventName](data);
+        if(id!=p)
+        this.list[p].event[eventName](data);
     }
 }
 
@@ -102,7 +99,7 @@ DmLister.emitOne=function(senderId,recId,eventName,data){
     {
         if(p.id==id)
         {
-            p[eventName]({"eventName":eventName,"sender":senderId,"recId":recId,"data":data,"Date":new Date()});
+            this.list[p][eventName]({"eventName":eventName,"sender":senderId,"recId":recId,"data":data,"Date":new Date()});
             return;
         }
     }
