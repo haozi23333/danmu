@@ -5,6 +5,7 @@ B站弹幕姬 for NW.js
 这个项目是方便使用`linux`和`MACOS`系统进行直播的同学提供的弹幕SDK<br>
 当然在`window`系统下面都是可以使用的<br>
 [本人直播间地址](http://live.bilibili.com/61627)房间号61627<br>
+注意在res/font/下面偶一个字体，有26M<br>
 Version 0.0.1
 
 食用方式(｀・ω・´)
