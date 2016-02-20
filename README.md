@@ -125,9 +125,17 @@ link.js
 [Jquery v3.0.0-beta1](https://jquery.com/)前端框架<br>
 `plugin`引用路径`src="../../js/jquery.js"`<br>
 
-聊天扯淡开发群
+资料ε=ε=(ノ≧∇≦)ノ
 ------
-[![](http://pub.idqqimg.com/wpa/images/group.png)](http://shang.qq.com/wpa/qunwpa?idkey=36fe0bea12ddced29bfc544fa36cc01acc704974968c56c8798f2835b80df52d);
+[NW.js 官方英文文档](http://docs.nwjs.io/)<br> 
+[Nodejs 官方英文文档](https://nodejs.org/api/)<br>
+[W3C 官方英文文档](https://www.w3.org/)<br>
+[Jquery 中文文档](http://www.jquery123.com/)<br>
+
+聊天扯淡开发群(￣3￣)
+------
+[![](http://pub.idqqimg.com/wpa/images/group.png)](http://shang.qq.com/wpa/qunwpa?idkey=36fe0bea12ddced29bfc544fa36cc01acc704974968c56c8798f2835b80df52d);<br>
+本人常年在线，有任何问题以及意见都可以像我反馈(･∀･)
 license(｀・ω・´)
 ------
 `danmu`'s code in this repo uses the GUN license
