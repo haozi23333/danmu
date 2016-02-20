@@ -4,7 +4,7 @@ B站弹幕姬 for NW.js
 -------
 这个项目是方便使用`linux`和`MACOS`系统进行直播的同学提供的弹幕SDK<br>
 当然在`window`系统下面都是可以使用的<br>
-本人直播间地址[~|](http://live.bilibili.com/61627)<br>
+[本人直播间地址](http://live.bilibili.com/61627)房间号61627<br>
 Version 0.0.1
 
 食用方式(｀・ω・´)
@@ -86,26 +86,32 @@ link.js
     listen.on("reload",callback);//插件重新加载
     listen.on("stop",callback)//强行退出插件在收到这个信息5秒之后窗口会被强制关闭
 ```
+多线程库网络请求库还在拖稿
+```javascript
+    //_(:зゝ∠)_表着急
+```
+
+
 编写插件(｀・ω・´)
 ------
-src
->XXXplugin
->>img<br>
->>css<br>
->>>index.css<br>
->>js<br>
->>>index.js<br>
->>index.html<br>
->>packege.json<br>
-
 ```josn
     {
         "name":"插件名称",
         "main":"启动文件",
         "author":"作者",
-        
+        "version":"0.0.1",
+        "npm":[{
+            "name":"名称"，
+            "version":"版本"
+        }]
     }
 ```
+`npm`暂不支持<br>
+由于nw.js 支持`node`所以允许加载nodejs的模块
+
+
+
+
 
 license(｀・ω・´)
 ------
