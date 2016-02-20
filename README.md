@@ -38,7 +38,7 @@ link.js
 ```
 全局API
 ```javascript
-    //如果加入了本文件 请不要使用link.js开启新的socket线程
+    //写插件请不要使用link.js开启新的socket线程
     //DmLister 是一个`global`属性的对象 请不要覆盖。
     var listen = DmLister.connect();//链接到本弹幕姬事件中心
         listen.on("data",function(data){//添加事件监听
@@ -86,14 +86,21 @@ link.js
     listen.on("reload",callback);//插件重新加载
     listen.on("stop",callback)//强行退出插件在收到这个信息5秒之后窗口会被强制关闭
 ```
-多线程库网络请求库还在拖稿
+多线程库还在拖稿
 ```javascript
     //_(:зゝ∠)_表着急
+    //用来优化网络io什么的
 ```
+数据库  拖
+-------
 
+```javascript
+     //_(:зゝ∠)_表着急
+```
 
 编写插件(｀・ω・´)
 ------
+注意件事情`nw.js`内核是`chrome`,所有东西都不需要考虑兼容性问题。
 ```josn
     {
         "name":"插件名称",
@@ -107,9 +114,8 @@ link.js
     }
 ```
 `npm`暂不支持<br>
-由于nw.js 支持`node`所以允许加载nodejs的模块
-
-
+由于nw.js 支持`node`所以允许加载nodejs的模块<br>
+本弹幕姬的插件系统比较简单,所有东西都可以自定义自由度较高//(╯‵□′)╯︵┻━┻偷懒就偷懒废话这么多<br>
 
 
 
