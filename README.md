@@ -82,7 +82,9 @@ link.js
     listen.removeAll(eventName);
     
     //系统事件！
-    listen.on("DM",callback);//接收弹幕信息
+    listen.on("DM_msg",callback);//接收弹幕信息
+    listen.on("DM_connect",callback);//接收错误信息
+    listen.on("DM_error",callback);//接收错误信息
     listen.on("exit",callback);//停止插件运行并退出
     listen.on("reload",callback);//插件重新加载
     listen.on("stop",callback)//强行退出插件在收到这个信息5秒之后窗口会被强制关闭
@@ -139,7 +141,7 @@ link.js
 
 聊天扯淡开发群(￣3￣)
 ------
-[![](http://pub.idqqimg.com/wpa/images/group.png)](http://shang.qq.com/wpa/qunwpa?idkey=36fe0bea12ddced29bfc544fa36cc01acc704974968c56c8798f2835b80df52d);<br>
+[![](http://pub.idqqimg.com/wpa/images/group.png)](http://shang.qq.com/wpa/qunwpa?idkey=36fe0bea12ddced29bfc544fa36cc01acc704974968c56c8798f2835b80df52d)<br>
 本人常年在线，有任何问题以及意见都可以像我反馈(･∀･)
 license(｀・ω・´)
 ------
