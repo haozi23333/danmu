@@ -21,7 +21,7 @@ Version 0.0.1
 ```javascript
     //写插件请不要使用link.js开启新的socket线程
     //DmLister 是一个`global`属性的对象 请不要覆盖。
-    var listen = DmLister.connect();//链接到本弹幕姬事件中心
+    var listen = global.DmLister.connect();//链接到本弹幕姬事件中心
         listen.on("data",function(data){//添加事件监听
             //TOTD ......
         })
@@ -84,7 +84,7 @@ Version 0.0.1
      //_(:зゝ∠)_表着急
      //好像不是很有必要的样子
 ```
-主程序保留关键字
+主程序保留关键字<br>
 `User`:用户信息<br>
 `Config`:主程序配置文件<br>
 `face`:用户头像地址<br>
