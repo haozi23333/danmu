@@ -2,21 +2,21 @@
  * Created by haozi on 16/2/20.
  */
 
-var DmLister={list:{}};
+global.DmLister={list:{}};
 /**
  * 连接 nw.js 事件中心
  * @returns {*}
  */
-DmLister.connect=function(){
+global.DmLister.connect=function(){
     var s = new this.Socket();
-    this.list[s.id]=s;
+    global.DmLister.list[s.id]=s;
     return s;
 }
-DmLister.Socket=function(){
+global.DmLister.Socket=function(){
     var s = {event:{}};
-    s.id = DmLister.uuid();
+    s.id = global.DmLister.uuid();
     s.emit=function(eventName,data){
-        DmLister.emit(this.id,eventName,data);
+        global.DmLister.emit(this.id,eventName,data);
     }
     /**
      * 激活事件
@@ -25,7 +25,7 @@ DmLister.Socket=function(){
      * @param data          数据
      */
     s.emitOne=function(id,eventName,data){
-        DmLister.emit(this.id,id,eventName,data);
+        global.DmLister.emit(this.id,id,eventName,data);
     }
     /**
      *  添加事件监听
@@ -34,9 +34,9 @@ DmLister.Socket=function(){
      * @returns {boolean}   是否添加成功 已存在返回false
      */
     s.on=function(eventName,callback){
-        if(this.event[eventName])
+        if(global.DmLister.list[this.id].event[eventName])
            return false;
-        this.event[eventName]=callback;
+        global.DmLister.list[this.id].event[eventName]=callback;
         return true;
     }
     /**
@@ -45,10 +45,10 @@ DmLister.Socket=function(){
      * @returns {boolean}   是否成功
      */
     s.remove=function(eventName){
-        if(!this.event[eventName])
+        if(!global.DmLister.list[this.id][eventName])
             return false;
         else
-            delete this.event[eventName];
+            delete global.DmLister.list[this.id][eventName];
         return true;
     }
     /**
@@ -66,7 +66,7 @@ DmLister.Socket=function(){
  * 生成uuid
  * @returns {string}    生成好的uuid
  */
-DmLister.uuid=function() {
+global.DmLister.uuid=function() {
     function S4() {
         return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
     }
@@ -78,11 +78,11 @@ DmLister.uuid=function() {
  * @param data          数据
  * @param callback      回调  返回事件接收的数量
  */
-DmLister.emit=function(id,eventName,data){
-    for(var p in this.list)
+global.DmLister.emit=function(id,eventName,data){
+    for(var p in global.DmLister.list)
     {
-        if(id!=p)
-        this.list[p].event[eventName](data);
+        if(id!=p&&global.DmLister.list[p].event[eventName])
+            global.DmLister.list[p].event[eventName](data);
     }
 }
 
@@ -94,12 +94,12 @@ DmLister.emit=function(id,eventName,data){
  * @param data                    数据
  * @param callback                回调
  */
-DmLister.emitOne=function(senderId,recId,eventName,data){
-    for(var p in this.list)
+global.DmLister.emitOne=function(senderId,recId,eventName,data){
+    for(var p in global.DmLister.list)
     {
         if(p.id==id)
         {
-            this.list[p][eventName]({"eventName":eventName,"sender":senderId,"recId":recId,"data":data,"Date":new Date()});
+            global.DmLister.list[p][eventName](data);
             return;
         }
     }
@@ -107,4 +107,3 @@ DmLister.emitOne=function(senderId,recId,eventName,data){
 /**
  * 绑定到全局对象 使其可以全局调用
  */
-global.DmLister=DmLister;

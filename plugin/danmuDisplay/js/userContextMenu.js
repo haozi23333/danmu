@@ -2,6 +2,8 @@
  * Created by haozi on 16/2/17.
  * userContextMenu 鼠标在用户头像上面的监听事件
  */
+
+//创建系统级的右键菜单  显示的时候会停止UI绘制
 var menu = new nw.Menu();
 
 // Add some items

@@ -3,7 +3,7 @@
   "name":"弹幕姬",
   "window":{
     "toolbar":false,
-    "transparent":true,
+//    "transparent":true,
     "frame":false,
     "always-on-top":true,
     "height":500,

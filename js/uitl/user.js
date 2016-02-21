@@ -5,6 +5,11 @@
  */
 importScripts("minajax.js");
 var user={};
+/**
+ * 用UID获取用户信息
+ * @param id
+ * @param callback
+ */
 user.getInfoById=function(id,callback)
 {
     minAjax({
@@ -18,11 +23,56 @@ user.getInfoById=function(id,callback)
         }
     })
 }
-user.getRoomById=function(){
-
-}
+/**
+ * 转换短房间号为长房间号
+ * @param id
+ */
 user.getRoomIdByshortId=function(id){
 
 
 
+}
+/**
+ * 获取房间相关信息
+ * @param id
+ * @param callback
+ */
+user.getRoomInfo=function(id,callback){
+    minAjax({
+        url:"http://live.bilibili.com/live/getInfo",
+        type:"GET",
+        data:{
+            roomid:id
+        },
+        success:function(a){
+            callback(JSON.parse(a));
+        }
+    })
+}
+/**
+ *   发送弹幕
+ * @param str       需要发送的字符串自己做判断小于20字
+ * @param callback  发送成功回调  如果没有登录传入false
+ */
+user.sendDanmu=function(str,callback)
+{
+    if (global.isLogin)
+    minAjax({
+        "url":"http://live.bilibili.com/msg/send",
+        data:{
+            color:"16777215",
+            fontsize:"25",
+            mode:"1",
+            msg:"弹幕测试",
+            rnd:"1456036173",
+            roomid:"61627"
+        },
+        success: function (a) {
+            callback(a);
+        }
+    })
+    else
+    {
+        callback(false);
+    }
 }

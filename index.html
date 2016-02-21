@@ -4,13 +4,15 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="plugin/danmuDisplay/css/index.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
     <script type="text/javascript" src="js/pluginInit.js"></script>
     <script type="text/javascript" src="js/socket.js"></script>
     <script type="text/javascript" src="js/link.js"></script>
+    <script type="text/javascript" src="js/uitl/cookie.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-<div class="aa" onclick="clear_all()"><h1>欢迎来到耗子的直播间</h1></div>
+<div class="aa" ><h1>弹幕姬</h1></div>
     <div>
 
 
@@ -20,6 +22,7 @@
 <!--http://music.163.com/#/song?id=39443692-->
 <script>
     var s = global.DmLister.connect();
+    global.isLogin=false;
     var p;
     var win = nw.Window.get();
     var DM = link;
@@ -28,19 +31,44 @@
             s.emit("DM_error",data.msg);
         if(data.type=="connect")
             s.emit("connect",data.msg);
-        s.emit("DM",data);
+        s.emit("DM_data",data.msg);
 
     })
-    DM.init(5354);
+    s.on("send",function(a){
+
+    })
+    s.on("login",function(a){
+        var s_cookie= a.split("; ");
+        for(var i=0;i<s_cookie.length;i++)
+        {
+            setCookie(s_cookie[i].split("=")[0],s_cookie[i].split("=")[1]);
+        }
+        global.isLogin=true;
+    })
+    DM.init(61627);
     DM.connect();
     var gui = require('nw.gui');
     window.onload=function(){
         p = plugin.init();
         for(var i = 0 ;i< p.length;i++)
         {
-            nw.Window.open("plugin/"+p[0].name+"/"+p[0].main, {}, function(new_win) {
+            nw.Window.open("plugin/"+p[0].name+"/"+p[0].main,p[0].window, function(new_win) {
                 // do something with the newly created window
             });
         }
     }
+    function login(){
+        s.on("login",function(a){
+            var s_cookie= a.split("; ");
+            for(var i=0;i<s_cookie.length;i++)
+            {
+                setCookie(s_cookie[i].split("=")[0],s_cookie[i].split("=")[1]);
+            }
+            global.isLogin=true;
+        })
+        nw.Window.open("login.html",{}, function(new_win) {
+
+        });
+    }
+
 </script>

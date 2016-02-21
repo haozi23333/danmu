@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilibili 登录</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+        iframe{
+            width: 512px;
+            height: 406px;
+            margin: -8px;
+        }
+        body{
+            overflow: hidden;
+        }
+        #islogin{
+            position: absolute;
+            top: 345px;
+            left: 189px;
+            width: 141px;
+            font-family: QAQ;
+            height: 23px;
+            background: gray;
+            box-shadow: 3px 3px 3px 2px dimgray;
+            border-radius: 6px;
+        }
+        @font-face {
+            font-family: QAQ;
+            src: url("/resources/font/HanzipenSC-Regular.otf");
+        }
+    </style>
+
+</head>
+<body>
+    <iframe id="iframe" src="https://account.bilibili.com/ajax/miniLogin/minilogin"></iframe>
+<div id="islogin">登录成功?点击这里</div>
+</body>
+</html>
+<script>
+    var _socket;
+    window.onload=function(){
+        var _socket = global.DmLister.connect();
+        $("#islogin").click(function(){
+            var cookie = $("#iframe")[0].contentDocument.cookie;
+            if(cookie=="")
+            {
+                alert("你还没有登录呢");
+                return;
+            }
+            _socket.emit("login",cookie);
+        })
+    }
+</script>

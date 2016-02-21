@@ -5,7 +5,7 @@
     <title>Title</title>
     <script type="text/javascript" src="../../js/jquery.js"></script>
     <script type="text/javascript" src="../../js/uitl/GiftName.js"></script>
-    <script type="text/javascript" src="../../js/userContextMenu.js"></script>
+    <script type="text/javascript" src="js/userContextMenu.js"></script>
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -14,6 +14,7 @@
 </body>
 </html>
 <script>
+    //收到的data数据
     var t=   {"info":
             [
                 [0,1,25,16777215,1455719956,"1455705800",0,"7aa0e8c7",0],
@@ -27,16 +28,25 @@
             ],
         "cmd":"DANMU_MSG"
     }
+
+    //文件逻辑有点吃翔
     var DM,DM_number= 0,MaxVisibleDmMun=10,NowVisibleDmMun= 0,selectDmUserId;
-    var d;
+    //获取窗口的Window对象
     var win = nw.Window.get();
+    //包含库文件
     var gui = require('nw.gui');
+    //设置窗口显示在最顶层
     win.setAlwaysOnTop(true);
+    //改变窗口大小
     win.resizeTo(500, 500);
+    //是否可以显示在全部工作区域,如果可以那就全部显示
     if(win.canSetVisibleOnAllWorkspaces() )
         win.setVisibleOnAllWorkspaces(true)
+    //开启新的工作线程
     var worker = new Worker('js/createDM.js');
+    //监听线程事件
     worker.onmessage=function(msg){
+        //如果事件type是message
         if(msg.type=="message")
             if(msg.data.type=="TextDM") {
                 if (NowVisibleDmMun >= MaxVisibleDmMun)
@@ -49,7 +59,7 @@
                 $("#DM").append(msg.data.data.html);
                 $("#DM_"+msg.data.data.number).click(function(a){
                     selectDmUserId = $(a.toElement).parent().attr("userid");
-                    menu.popup(window.event.clientX, window.event.clientY);
+//                    menu.popup(window.event.clientX, window.event.clientY);
                     a.stopPropagation();
                 });
                 $("#DM_"+msg.data.data.number).animate({"margin-left":"100px",opacity:'1'},"slow");
@@ -58,12 +68,16 @@
     }
     var newwin,_socket;
     window.onload=function() {
+        //加入全局事件中心
         _socket = global.DmLister.connect();
-        _socket.on("DM", function (data) {
-            data =data.msg;
+        //监听弹幕事件
+        _socket.on("DM_data", function (data) {
+         //收到的data是一个对象可以参考最上面的变量t.
             switch (data.cmd) {
                 case "DANMU_MSG":
                     DM_number++;
+                    //简单的对数据进行处理
+                        console.log(DM_number+":"+ data.info[1]);
                     worker.postMessage({
                         "type": "createTextDm", "data": {
                             num: DM_number,
@@ -74,6 +88,7 @@
                         }
                     });
                     break;
+                //如果是礼物
                 case "SEND_GIFT":
                     DM_number++;
                     worker.postMessage({
@@ -90,21 +105,31 @@
                         }
                     });
                     break;
+                //老爷进房
                 case "WELCOME":
                     break;
+                //高能预警
                 case "SYS_GIFT":
                     break;
                 default:
                     break;
             }
         });
+        _socket.on("DM_error", function (data) {
+            //收到的data是一个对象可以参考最上面的变量t.
+            console.log(data);
+        });
+        _socket.on("DM_connect", function (data) {
+            //收到的data是一个对象可以参考最上面的变量t.
+            console.log(data);
+        });
     }
+    //清除全部弹幕
     function clear_all(){
-        $(".TextDM").animate({"margin-left":"300px",opacity:'0'},"fast");
+        $(".DM").animate({"margin-left":"300px",opacity:'0'},"fast");
         setTimeout(function(){
-            $(".TextDM").remove();
+            $(".DM").remove();
         },500)
         NowVisibleDmMun=0;
     }
-
 </script>
