@@ -51,10 +51,11 @@ user.getRoomInfo=function(id,callback){
 }
 /**
  *   发送弹幕
+ * @param roomid    有效房间号
  * @param str       需要发送的字符串自己做判断小于20字
  * @param callback  发送成功回调  如果没有登录传入false
  */
-user.sendDanmu=function(str,callback)
+user.sendDanmu=function(roomid,str,callback)
 {
     if (global.isLogin)
     minAjax({
@@ -63,9 +64,9 @@ user.sendDanmu=function(str,callback)
             color:"16777215",
             fontsize:"25",
             mode:"1",
-            msg:"弹幕测试",
-            rnd:"1456036173",
-            roomid:"61627"
+            msg:str,
+            rnd:new Date().getTime(),
+            roomid:roomid
         },
         success: function (a) {
             callback(a);
