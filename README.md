@@ -4,8 +4,9 @@ B站弹幕姬 for NW.js
 -------
 这个项目是方便使用`linux`和`MACOS`系统进行直播的同学提供的弹幕SDK<br>
 当然在`window`系统下面都是可以使用的<br>
+本人注重弹幕`交互`,并不适合经常刷大量弹幕的直播间用户<br>
 [本人直播间地址](http://live.bilibili.com/61627)房间号61627<br>
-注意在res/font/下面偶一个字体，有26M<br>
+注意在res/font/下面偶一个字体，有`26M`<br>
 Version 0.0.1
 
 食用方式(｀・ω・´)
@@ -13,31 +14,10 @@ Version 0.0.1
 `clone`这个项目<br>
 `下载`[NW.js SDK](http://nwjs.io/);<br>
 `nw.js /danmu`<br>
-文件说明(｡･ω･｡)
---------
-link.js
 
-```javascript
-    var DM = require("./js/link.js").init(61627);//init(房间号)
-        DM.onData(function(data){
-            console.log(data)
-        });//onData(callback)接受到弹幕信息的时候执行回调,返回的是socket接收到的原数据
-    //data格式
-    var t=   {"info":
-            [
-                [0,1,25,16777215,1455719956,"1455705800",0,"7aa0e8c7",0],
-                "弹幕文字",
-                [用户UID,
-                    "用户名",
-                    1,0,0],
-                [],
-                [21,16067],
-                []
-            ],
-        "cmd":"DANMU_MSG"
-    }
-```
-全局API
+
+全局API(｡･ω･｡)
+--------
 ```javascript
     //写插件请不要使用link.js开启新的socket线程
     //DmLister 是一个`global`属性的对象 请不要覆盖。
@@ -115,7 +95,7 @@ link.js
 编写插件(｀・ω・´)
 ------
 注意件事情`nw.js`内核是`chrome`,所有东西都不需要考虑兼容性问题。
-```josn
+```javascript
     {
         "name":"插件名称",
         "main":"启动文件",
