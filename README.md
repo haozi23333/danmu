@@ -110,6 +110,8 @@ Version 0.0.1
         }]
     }
 ```
+`package.json`注意事项<br>
+1.除json外不要包含任何字符 如注释
 [window 支持属性](http://docs.nwjs.io/en/v0.13.0-beta5/References/Manifest%20Format/#window-subfields)window属性必须在创建窗口的时候传入，是否透明，窗口图标，最大宽高度什么的
 `npm`暂不支持<br>
 由于nw.js 支持`node`所以允许加载nodejs的模块<br>
