@@ -19,7 +19,6 @@
     </div>
 </body>
 </html>
-<!--http://music.163.com/#/song?id=39443692-->
 <script>
     var s = global.DmLister.connect();
     global.isLogin=false;
@@ -45,19 +44,15 @@
         }
         global.isLogin=true;
     })
-    DM.init(61627);
+    DM.init(5430);
     DM.connect();
     var gui = require('nw.gui');
     window.onload=function(){
         p = plugin.init();
-        for(var i = 0 ;i< p.length;i++)
-        {
-            nw.Window.open("plugin/"+p[0].name+"/"+p[0].main,p[0].window, function(new_win) {
-                // do something with the newly created window
-            });
-        }
+
     }
     function login(){
+        var new_window ;
         s.on("login",function(a){
             var s_cookie= a.split("; ");
             for(var i=0;i<s_cookie.length;i++)
@@ -65,9 +60,10 @@
                 setCookie(s_cookie[i].split("=")[0],s_cookie[i].split("=")[1]);
             }
             global.isLogin=true;
+            new_window.close()
         })
         nw.Window.open("login.html",{}, function(new_win) {
-
+            new_window = new_win
         });
     }
 

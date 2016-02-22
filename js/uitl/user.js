@@ -29,8 +29,6 @@ user.getInfoById=function(id,callback)
  */
 user.getRoomIdByshortId=function(id){
 
-
-
 }
 /**
  * 获取房间相关信息
